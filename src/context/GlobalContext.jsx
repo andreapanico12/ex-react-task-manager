@@ -5,15 +5,16 @@ const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
-  const API__URL = import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL
 
   useEffect(() => {
-    fetch(`${API__URL}/tasks`)
+    fetch(`${API_URL}/tasks`)
     .then(res => res.json())
     .then(data => {
       console.log(`DATI RICEVUTI: ${data}`);
       setTasks(data);
     })
+  
     .catch(err => console.log(`ERRORE NEL FETCH DEI DATI:`, err))
   }, []);
 
