@@ -1,9 +1,19 @@
+import React from 'react'
 
+const statusClass={
+  "To do": "bg-danger text white",
+  "Doing": "bg-warning",
+  "Done": "bg-success text-white"
+}
 
-const TaskRow = () => {
+const TaskRow = ({ task }) => {
   return (
-    <div>TaskRow</div>
+    <tr>
+      <td>{task.title}</td>
+      <td className={statusClass[task.status] || ""}>{task.status}</td>
+      <td>{new Date(task.createdAt).toLocaleDateString()}</td>
+    </tr>
   )
 }
 
-export default TaskRow
+export default React.memo(TaskRow)
