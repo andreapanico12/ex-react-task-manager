@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const statusClass={
   "To do": "bg-danger text white",
@@ -9,7 +10,9 @@ const statusClass={
 const TaskRow = ({ task }) => {
   return (
     <tr>
-      <td>{task.title}</td>
+      <td>
+        <Link to={`/task/${task.id}`}>{task.title}</Link>
+      </td>
       <td className={statusClass[task.status] || ""}>{task.status}</td>
       <td>{new Date(task.createdAt).toLocaleDateString()}</td>
     </tr>
