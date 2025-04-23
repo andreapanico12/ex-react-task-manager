@@ -3,6 +3,7 @@ import AddTask from "./pages/AddTask"
 import TaskList from "./pages/TaskList"
 import { GlobalProvider } from "./context/GlobalContext"
 import TasksNavbar from "./components/TasksNavbar"
+import TaskDetail from "./pages/TaskDetail"
 function App() {                                                
 
 

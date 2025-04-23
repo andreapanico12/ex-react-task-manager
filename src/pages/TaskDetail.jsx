@@ -1,0 +1,37 @@
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+
+function TaskDetail() {
+
+  const { id } = useParams();
+  const { tasks } = useContext(GlobalContext);
+  const task = tasks.find((task) => task.id === parseInt(id));
+
+
+  if (!task) {
+    return <p>Task non trovata.</p>;
+  }
+
+
+
+  return (
+    <div className="container py-4">
+    <h2 className="mb-4">Dettaglio Task</h2>
+    <div className="card p-3">
+      <h4>{task.title}</h4>
+      <p><strong>Descrizione:</strong> {task.description}</p>
+      <p><strong>Stato:</strong> {task.status}</p>
+      <p><strong>Creato il:</strong> {new Date(task.createdAt).toLocaleString()}</p>
+
+      <button
+        className="btn btn-danger mt-3"
+      >
+        Elimina Task
+      </button>
+    </div>
+  </div>
+  )
+}
+
+export default TaskDetail
