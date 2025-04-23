@@ -13,7 +13,7 @@ const { addTask } = useContext(GlobalContext);
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   //Validazione nome task
@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
   // Aggiunta del task all'API
 
   try{
-     addTask(newTask);
+     await addTask(newTask);
      alert("Task aggiunto con successo!");
      // reset form
     setTitle("");
