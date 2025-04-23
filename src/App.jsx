@@ -2,16 +2,14 @@ import { BrowserRouter as Router, Routes , Route, NavLink } from "react-router-d
 import AddTask from "./pages/AddTask"      
 import TaskList from "./pages/TaskList"
 import { GlobalProvider } from "./context/GlobalContext"
+import TasksNavbar from "./components/TasksNavbar"
 function App() {                                                
 
 
   return (
     <GlobalProvider>
       <Router>
-       <nav>
-        <NavLink to="/">Task List</NavLink>
-        <NavLink to="/add">Add Task</NavLink>
-      </nav>
+        <TasksNavbar />
         <Routes>
           <Route path="/" element={<TaskList />} />
           <Route path="/add" element={<AddTask />} />
