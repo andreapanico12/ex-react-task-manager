@@ -8,7 +8,7 @@ const GlobalProvider = ({ children }) => {
 const { tasks, setTasks, addTask, removeTask, updateTask } = useTasks();
 
   return(
-    <GlobalContext.Provider value={{ tasks, setTasks }}>
+    <GlobalContext.Provider value={{ tasks, setTasks,addTask,removeTask,updateTask }}>
       {children}
     </GlobalContext.Provider>
   )

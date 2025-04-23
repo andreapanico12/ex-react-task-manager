@@ -1,4 +1,5 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useContext} from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const AddTask = () => {
 
@@ -7,6 +8,8 @@ const [error, setError] = useState("");
 
 const descriptionRef = useRef();
 const statusRef = useRef();
+
+const { addTask } = useContext(GlobalContext);
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
@@ -36,13 +39,20 @@ const handleSubmit = (e) => {
 
   console.log("Nuovo task:", newTask);
 
-  // reset form
+  // Aggiunta del task all'API
 
-  setTitle("");
-  descriptionRef.current.value = "";
-  statusRef.current.value = "To do";
-}
+  try{
+     addTask(newTask);
+     alert("Task aggiunto con successo!");
+     // reset form
+    setTitle("");
+    descriptionRef.current.value = "";
+    statusRef.current.value = "To do";
+} catch (error) {
+  alert("Errore durante l'aggiunta del task:", error.message);
 
+  }
+};
 
 
 
