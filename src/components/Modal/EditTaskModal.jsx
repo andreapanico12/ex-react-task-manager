@@ -81,7 +81,11 @@ const EditTaskModal = ({ show, onClose, task, onSave }) => {
     </form>
     }
     confirmText="Salva"
-    onConfirm={handleSave}
+    onConfirm={() => {
+      if (editFormRef.current) {
+        editFormRef.current.requestSubmit(); // ✅ submit simulato
+      }
+    }}
     />
   )
 }
