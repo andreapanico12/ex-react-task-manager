@@ -63,7 +63,32 @@ const useTasks = () => {
   };
 
 
-  const updateTask = () => {};
+  const updateTask = async (updatedTask) => {
+    try{
+      const response = await fetch(`${API_URL}/tasks/${updatedTask.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedTask),
+      });
+      const result = await response.json();
+      console.log("Task aggiornata:", result);
+
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+      setTasks((prevTasks) => 
+        prevTasks.map((task) => (task.id === updatedTask.id ? result.task : task))
+      );
+
+      return result.task;
+
+    } catch (error) {
+      throw new Error(error.message);
+    }
+
+  };
 
 
 
