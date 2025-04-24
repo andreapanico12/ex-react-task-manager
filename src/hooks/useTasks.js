@@ -17,6 +17,8 @@ const useTasks = () => {
     .catch(err => console.log(`ERRORE NEL FETCH DEI DATI:`, err))
   }, []);
 
+  // Funzione per aggiungere un task
+
   const addTask = async ({title, description, status}) =>{
     try{
       const response = await fetch(`${API_URL}/tasks`, {
@@ -41,11 +43,26 @@ const useTasks = () => {
 }  
 
 
+// Funzione per rimuovere un task
+
+  const removeTask =  async (taskId) => {
+    try{
+      const response = await fetch(`${API_URL}/tasks/${taskId}`,{
+        method: "DELETE"
+      })
+      const result = await response.json();
+
+      if(!result.success){
+        throw new Error(result.message);
+      }
+
+      setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
+    } catch (error) {
+      throw error;
+    }
+  };
 
 
-
-
-  const removeTask = () => {};
   const updateTask = () => {};
 
 
