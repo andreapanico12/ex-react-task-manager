@@ -1,11 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 function TaskDetail() {
 
   const { id } = useParams();
-  const { tasks } = useContext(GlobalContext);
+  const { tasks, removeTask } = useContext(GlobalContext);
+  const navigate = useNavigate();
   const task = tasks.find((task) => task.id === parseInt(id));
 
 
@@ -13,6 +14,15 @@ function TaskDetail() {
     return <p>Task non trovata.</p>;
   }
 
+  const handleDelete = async () =>{
+    try{
+      await removeTask(task.id);
+      alert("Task eliminata con successo");
+      navigate("/");
+    } catch (error) {
+      alert("Errore durante l'eliminazione del task:", error.message);
+    }
+  };
 
 
   return (
@@ -26,6 +36,7 @@ function TaskDetail() {
 
       <button
         className="btn btn-danger mt-3"
+        onClick={handleDelete}
       >
         Elimina Task
       </button>
