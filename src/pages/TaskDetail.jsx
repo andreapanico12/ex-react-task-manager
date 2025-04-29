@@ -15,6 +15,8 @@ function TaskDetail() {
   const [showEditModal, setShowEditModal] = useState(false);
 
 
+  
+
   if (!task) {
     return <p>Task non trovata.</p>;
   }
