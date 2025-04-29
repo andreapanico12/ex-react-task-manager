@@ -1,7 +1,7 @@
 import ReactDom from 'react-dom'
 import styles from './Modal.module.css'
 
-const Modal = ( { title, content, show, onClose, onConfirm, confirmText = "Conferma" } ) => {
+const Modal = ( { title, content, show, onClose, onConfirm, confirmText = "Conferma", hideFooterButtons = false } ) => {
 
   if (!show) return null
 
@@ -19,14 +19,16 @@ const Modal = ( { title, content, show, onClose, onConfirm, confirmText = "Confe
           ></button>
         </div>
         <div className="modal-body">{content}</div>
-        <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={onClose}>
-            Annulla
-          </button>
-          <button className="btn btn-danger" onClick={onConfirm}>
-            {confirmText}
-          </button>
-        </div>
+        {!hideFooterButtons && (
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={onClose}>
+                Annulla
+              </button>
+              <button className="btn btn-danger" onClick={onConfirm}>
+                {confirmText}
+              </button>
+            </div>
+          )}
       </div>
     </div>
   </div>,

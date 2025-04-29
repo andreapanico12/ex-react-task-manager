@@ -80,6 +80,7 @@ const EditTaskModal = ({ show, onClose, task, onSave }) => {
       </div>
     </form>
     }
+    hideFooterButtons={true}
     confirmText="Salva"
     onConfirm={() => {
       if (editFormRef.current) {
